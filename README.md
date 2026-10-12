@@ -5,5 +5,5 @@ Steps - Commands for each step are in its own directory
   1. NextDenovo
   2. LongStitch
   3. Polish
-     A. Medaka
-     B. NextPolish
+     - Medaka
+     - NextPolish
