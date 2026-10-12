@@ -1,3 +1,3 @@
 #!/bin/bash
 
-nohup nextDenovo run.cfg &
+nohup nextDenovo run_nextdenovo.cfg &
