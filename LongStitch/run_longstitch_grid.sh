@@ -1,3 +1,5 @@
+#!/bin/bash
+
 for i in 24 32 40; do
         for j 100 250 500; do
                 mkdir k${i}_w${j}
