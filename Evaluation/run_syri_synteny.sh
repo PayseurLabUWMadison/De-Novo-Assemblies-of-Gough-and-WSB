@@ -1,14 +1,9 @@
 #!/bin/bash
 
-for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 X ; do
-minimap2 -a --eqx -x asm5 --cs -r2k /mnt/ssd/jing/denovo_assembly/final_assemblies/wsb_chr${i}.fa /mnt/ssd/jing/denovo_assembly/final_assemblies/gl2_chr${i}.fa | samtools sort -O BAM -o wsb_gl2_aln_chr${i}.bam
-done
+minimap2 -a --eqx -x asm5 --cs -r2k /mnt/ssd/jing/denovo_assembly/final_assembly/mm39_autosomes_chrX.fa /mnt/ssd/jing/denovo_assembly/final_assembly/wsb_polished_autosomes_chrX.fa | samtools sort -O BAM -o mm39_wsb_aln_autosomes_chrX.bam
+samtools index mm39_wsb_aln_autosomes_chrX.bam
+nohup syri -c mm39_wsb_aln_autosomes_chrX.bam -r /mnt/ssd/jing/denovo_assembly/seqkit_seqtk_wGaps/mm39_autosomes_chrX.fa -q /mnt/ssd/jing/denovo_assembly/final_assembly/wsb_polished_autosomes_chrX.fa -k -F B --prefix mm39_wsb --nc 12
 
-for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 X ; do
-samtools index wsb_gl2_aln_chr${i}.bam
-done
-
-for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 X ; do
-nohup syri -c wsb_gl2_aln_chr${i}.bam -r /mnt/ssd/jing/denovo_assembly/final_assemblies/wsb_chr${i}.fa -q /mnt/ssd/jing/denovo_assembly/final_assemblies/gl2_chr${i}.fa -k -F B --prefix wsbchr${i}_
-gl2chr${i} --nc 12
-done
+minimap2 -a --eqx -x asm5 --cs -r2k /mnt/ssd/jing/denovo_assembly/final_assembly/wsb_polished_autosomes_chrX.fa /mnt/ssd/jing/denovo_assembly/final_assembly/gl2_polished_autosomes_chrX.fa | samtools sort -O BAM -o wsb_gl2_aln_autosomes_chrX.bam
+samtools index wsb_gl2_aln_autosomes_chrX.bam
+nohup syri -c wsb_gl2_aln_autosomes_chrX.bam -r /mnt/ssd/jing/denovo_assembly/final_assembly/wsb_polished_autosomes_chrX.fa -q /mnt/ssd/jing/denovo_assembly/final_assembly/gl2_polished_autosomes_chrX.fa -k -F B --prefix wsb_gl2 --nc 12 &
